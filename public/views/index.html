@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html ng-app="trackerApp" ng-controller="indexController">
+<head lang="en">
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.0/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/css/tracker.css">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-cookies.js"></script>
+    <script src="https://cdn.socket.io/socket.io-1.3.5.js"></script>
+
+    <script src="tracker.js"></script>
+    <script src="directives/translate.js"></script>
+    <script src="services/accounts.js"></script>
+    <script src="services/data.js"></script>
+    <script src="services/entities.js"></script>
+    <script src="services/ledgers.js"></script>
+    <script src="services/rates.js"></script>
+    <script src="services/tokens.js"></script>
+    <script src="services/transactions.js"></script>
+    <script src="controllers/controller.js"></script>
+    <script src="routes/states.js"></script>
+
+    <title ng-bind-template="({{currentRate}}) - {{WebsiteName}}" ng-if="currentRate"></title>
+    <title ng-bind="WebsiteName" ng-if="!currentRate"></title>
+
+
+</head>
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-default">
+        <div>
+            <div class="navbar-header">
+                <a class="navbar-brand" href="{{Website}}" ng-bind="WebsiteName"></a>
+            </div>
+
+            <ul class="nav navbar-nav navbar-center">
+                <li><a ui-sref="home" language-token="home"></a></li>
+                <li><a ui-sref="entities" language-token="entities"></a></li>
+                <li><a ui-sref="nodes" language-token="nodes"></a></li>
+                <li><a ui-sref="slots" language-token="slots"></a></li>
+                <li><a ui-sref="rates" language-token="rates"></a></li>
+
+                <li><input type="text" class="form-control col-sm-2" ng-model="searchContent"  /></li>
+            </ul>
+
+            <div class="nav navbar-nav navbar-right">
+
+                <span ng-if="currentRate">
+                    <span language-token="current_rate"></span>
+                     <span ng-bind="currentRate" ui-sref="rates"></span>
+                </span>
+                <div class="dropdown btn-group">
+                    <button class="btn dropdown-toggle" type="button" data-toggle="dropdown" ng-bind="currentCurrency"></button>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="curr in currencies"><a ng-click="SetCurrency(curr)" ng-bind="curr"></a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="view" ui-view></div>
+        <div class="spacing-block"></div>
+    </main>
+
+    <div id="footer">
+
+        <ul class="nav navbar-nav">
+            <li>...</li>
+            <li><a href="https://www.udc.world">UDC World Bank</a></li>
+            <li>copyright</li>
+            <li>
+                <div class="dropdown btn-group">
+                    <button class="btn btn-success dropdown-toggle" type="button" data-toggle="dropdown"><span ng-bind="currentLanguage"></span> <span class="caret"></span></button>
+                    <ul class="dropdown-menu">
+                        <li ng-repeat="lang in languages"><a ng-click="SetLanguage(lang)" ng-bind="lang"></a></li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+
+    </div>
+</body>
+</html>

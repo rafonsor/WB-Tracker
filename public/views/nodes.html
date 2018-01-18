@@ -1,0 +1,26 @@
+<div ng-controller="nodesController">
+    <h1 language-token="validation_nodes"></h1>
+    <br>
+
+    <table id="nodesTable">
+        <tr class="tr_header">
+            <th language-token="node_id"></th>
+            <th language-token="public_key"></th>
+            <th language-token="host"></th>
+            <th language-token="owner"></th>
+            <th language-token="status"></th>
+        </tr>
+
+        <tr ng-repeat="node in nodes | orderBy:'node'" ng-if="!notFound">
+            <td ng-bind="node.node"></td>
+            <td ng-bind="node.public_key"></td>
+            <td ng-bind="node.host"></td>
+            <td ng-bind="node.entity"></td>
+            <td ng-class="node.status === 'online' ? 'node-connected': 'node-disconnected'" ng-bind="node.status"></td>
+        </tr>
+
+        <tr ng-if="notFound">
+            <td colspan="5" language-token="nodes_not_found"></td>
+        </tr>
+    </table>
+</div>

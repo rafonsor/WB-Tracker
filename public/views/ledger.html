@@ -1,0 +1,86 @@
+<div ng-controller="ledgerController">
+
+    <h1 ng-bind-template="Ledger #{{ledgerId}}"></h1>
+    <br>
+    <div id="info" ng-if="!NotFoundError">
+        <div id="currentLedger">
+            <table id="currentLedgerTable">
+                <tr class="tr_header"><th colspan="2" language-token="current_ledger_info"></th></tr> <--- ???
+
+                <tr>
+                    <td language-token="ledger_id"></td>
+                    <td ng-bind="ledgerId"></td>
+                </tr>
+                <tr>
+                    <td language-token="ledger_hash"></td>
+                    <td ng-bind="ledger['Ledger Hash']"></td>
+                </tr>
+                <tr>
+                    <td language-token="ledger_begin"></td>
+                    <td ng-bind="TimestampToDate(ledger['Begin'])"></td>
+                </tr>
+                <tr>
+                    <td language-token="ledger_end"></td>
+                    <td ng-bind="TimestampToDate(ledger['End'])"></td>
+                </tr>
+                <tr>
+                    <td language-token="number_accounts"></td>
+                    <td>
+                        <span ng-bind="ledger['Number of Accounts']"></span>
+                        <a class="btn btn-primary" ui-sref="ledger.accounts({ledger:ledgerId})" language-token="view"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td language-token="number_transactions"></td>
+                    <td>
+                        <span ng-bind="ledger['Number of Transactions']"></span>
+                        <a class="btn btn-primary" ui-sref="ledger.transactions({ledger:ledgerId})" language-token="view"></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td language-token="amount_circulation"></td>
+                    <td ng-bind="ledger['Amount in Circulation']"></td>
+                </tr>
+                <tr>
+                    <td language-token="amount_traded"></td>
+                    <td ng-bind="ledger['Amount Traded']"></td>
+                </tr>
+                <tr>
+                    <td language-token="fees_collected"></td>
+                    <td ng-bind="ledger['Fees Collected']"></td>
+                </tr>
+                <tr>
+                    <td language-token="ledger_size"></td>
+                    <td ng-bind="SizeIn(ledger['Size'])"></td>
+                </tr>
+                <tr>
+                    <td language-token="download_ledger"></td>
+                    <td><a class="btn btn-primary" ng-href="{{ledger.link}}" ng-bind="download"></a></td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="previousLedger">
+            <table id="previousLedgerTable">
+                <tr class="tr_header"><th colspan="2" language-token="previous_ledger"></th></tr> <--- ???
+
+                <tr>
+                    <td language-token="ledger_id"></td>
+                    <td><a class="a_link" ui-sref="ledger.transactions({ledger:ledger['Previous Ledger ID']})" ng-bind="ledger['Previous Ledger ID']"></a></td>
+                </tr>
+                <tr>
+                    <td language-token="ledger_hash"></td>
+                    <td ng-bind="ledger['Previous Ledger Hash']"></td>
+                </tr>
+                <tr>
+                    <td language-token="ledger_end"></td>
+                    <td ng-bind="TimestampToDate(ledger['Start']-1)"></td>
+                </tr>
+
+            </table>
+
+        </div>
+    </div>
+
+    <div id="notFound" ng-if="NotFoundError" language-token="ledger_not_found_error"></div>
+</div>

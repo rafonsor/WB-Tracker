@@ -1,0 +1,33 @@
+<div ng-controller="transactionsController">
+    <h1 language-token="latest_transactions"></h1>
+    <br>
+    <table id="transactionsTable" ng-if="!error">
+        <tr class="tr_header">
+            <th language-token="hash"></th>
+            <th language-token="timestamp"></th>
+            <th language-token="sender"></th>
+            <th language-token="receiver"></th>
+            <th language-token="amount"></th>
+            <th language-token="remain"></th>
+        </tr>
+
+        <tr ng-repeat="transaction in transactions | orderBy:'timestamp'" ui-sref="transaction({hash:transaction.hash})">
+            <td ng-bind="transaction.hash"></td>
+            <td ng-bind="TimestampToHowLong(transaction.timestamp)"></td>
+            <td ng-bind="transaction.sender"></td>
+            <td ng-bind="transaction.receiver"></td>
+            <td ng-bind-template="{{transaction.amount}} UDC"></td>
+            <td ng-bind="transaction.inbound.remain"></td>
+        </tr>
+    </table>
+
+    <div ng-if="!reachedEnd && !error">
+        <button class="btn btn-block" ng-click="ViewMore()" language-token="view_more"></button>
+    </div>
+
+
+    <div ng-if="error">
+        <span language-token="transaction_not_found_error"></span>
+    </div>
+
+</div>

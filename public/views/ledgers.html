@@ -1,0 +1,28 @@
+<div ng-controller="ledgersController">
+
+    <h1 language-token="ledgers"></h1>
+    <br>
+
+    <table id="allLedgersTable" ng-if="!error">
+        <tr class="tr_header">
+            <th language-token="ledger_id"></th>
+            <th language-token="ledger_end"></th>
+            <th language-token="number_transactions"></th>
+            <th language-token="amount_traded"></th>
+            <th language-token="fees_collected"></th>
+            <th language-token="ledger_size"></th>
+        </tr>
+
+        <tr ng-repeat="ledger in ledgers" ui-sref="ledger({ledger: ledger['Ledger ID']})">
+            <td ng-bind="ledger['Ledger ID']"></td>
+            <td ng-bind="TimestampToDate(ledger[End])"></td>
+            <td ng-bind="ledger['Number of Transactions']"></td>
+            <td ng-bind="ledger['Amount Traded']"></td>
+            <td ng-bind="ledger['Fees Collected']"></td>
+            <td ng-bind="ledger[Size]"></td>
+        </tr>
+    </table>
+
+    <span ng-if="error" language-token="ledgers_fetch_error"></span>
+
+</div>

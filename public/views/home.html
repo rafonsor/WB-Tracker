@@ -1,0 +1,71 @@
+<div ng-controller="homeController" ng-init="">
+    <div id="ledgers">
+        <h2 class="" language-token="latest_ledgers" class="home_ledgers"></h2>
+        <br>
+        <table id="ledgersTable" class="table table-hover">
+            <tr class="tr-header">
+                <th style="width: 100px;" language-token="ledger_id"></th>
+                <th style="width: 140px;" language-token="ledger_end"></th>
+                <th style="width: 110px;" language-token="number_transactions"></th>
+                <th style="width: 130px;" language-token="amount_traded"></th>
+                <th style="width: 110px;" language-token="fees_collected"></th>
+                <th style="width: 100px;" language-token="ledger_size"></th>
+            </tr>
+
+            <tr ng-class="$odd? 'success':'danger'" ng-repeat="ledger in ledgers" ui-sref="ledger({ledger: ledger['Ledger ID']})" ng-if="!notFound">
+                <td ng-bind="ledger['Ledger ID']"></td>
+                <td ng-bind="TimestampToDate(ledger['End'])"></td>
+                <td style="text-align: right; padding-right: 20px;" ng-bind="ledger['Number of Transactions']"></td>
+                <td style="text-align: right"><span ng-bind="ledger['Amount Traded']/100"></span> <img class="udc" src="../assets/img/udc.png"/></td>
+                <td style="text-align: right"><span ng-bind="ledger['Fees Collected']/100"></span> <img class="udc" src="../assets/img/udc.png"/></td>
+                <td style="text-align: right; padding-right: 20px;" ng-bind="SizeIn(ledger['Size'])"></td>
+            </tr>
+
+            <tr ng-if="!notFound">
+                <td ui-sref="ledgers" colspan="6"><br><button class="btn btn-block btn-primary" language-token="view_ledgers"></button></td>
+            </tr>
+
+            <tr class="primary" ng-if="notFound">
+                <td language-token="ledgers_fetch_error" colspan="6"></td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div id="transactions" class="home_transactions">
+        <table id="transactionsTable" class="table table-hover">
+            <tr>
+                <td colspan="5"><h4 language-token="latest_transactions"></h4></td>
+            </tr>
+            <!--<tr class="animate repeat..."-->
+            <tr class=" warning tx-row" ng-repeat="tx in transactions" ui-sref="transaction({hash: tx.hash})">
+                <td><div class="hash" ng-bind="tx.hash"></div></td>
+                <td class="bold center-left" ng-bind="tx.receiver"></td>
+                <td class="amount"><button class="btn btn-danger"><span ng-bind-template="{{tx.amount/100}}"></span> <img class="udc" src="../assets/img/udc_w.png"/></button></td>
+                <td class="amount"><button class="btn btn-success"><span ng-bind-template="{{tx.remain/100}}"></span>  <img class="udc" src="../assets/img/udc_w.png"/></button></td>
+                <td class="bold pad-right" ng-bind="TimestampToHowLong(tx.timestamp)"></td>
+            </tr>
+
+
+            <tr class="tr-footer">
+                <td ui-sref="transactions" colspan="5"><br><button class="btn btn-block btn-primary" language-token="view_transactions"></button></td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div id="misc">
+        <div id="search">
+            <h3 language-token="search_cap"></h3>
+            <span language-token="search_info"></span>
+
+            <form class="form-inline"><br>
+                <input type="text" class="form-control" ng-model="searchContentHome" />
+                <button class="btn btn-primary" language-token="search" ng-click="Search()"></button>
+            </form>
+            <br>
+            <h3></h3>
+        </div>
+    </div>
+
+</div>

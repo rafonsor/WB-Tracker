@@ -1,0 +1,21 @@
+<div ng-controller="entitiesController">
+    <h1 language-token="entities"></h1>
+    <br>
+
+    <table id="entitiesTable">
+        <tr class="tr_header">
+            <th language-token="entitiy_id"></th>
+            <th language-token="name"></th>
+            <th language-token="website"></th>
+            <th language-token="public_key"></th>
+        </tr>
+
+        <tr ng-repeat="entity in entities | orderBy:'entity'" ui-sref="entity({entity:entity.entity})">
+            <td ng-bind="entity.entity"></td>
+            <td ng-bind="entity.name"></td>
+            <td ng-bind="entity.website"></td>
+            <td ng-bind="entity.public_key"></td>
+        </tr>
+    </table>
+
+</div>

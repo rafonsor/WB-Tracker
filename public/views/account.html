@@ -1,0 +1,49 @@
+<div ng-controller="accountController">
+    <table id="acccountInfo">
+        <tr>
+            <td language-token="account"></td>
+            <td ng-bind="account"></td>
+        </tr>
+
+        <tr>
+            <td language-token="balance"></td>
+            <td ng-bind-template="{{info.balance/100}} UDC"></td>
+        </tr>
+
+        <tr>
+            <td language-tokend="last_update"></td>
+            <td><a ui-sref="ledger({ledger:info.ledger})" ng-bind-template="{{TimestampToDateSimple(info.last_update)}} (Ledger #{{info.ledger}})"></a></td>
+        </tr>
+
+        <tr>
+            <td language-token="public_key"></td>
+            <td ng-bind="info.public_key"></td>
+        </tr>
+
+        <tr>
+            <td language-token="slot"></td>
+            <td ng-bind="info.slot.substr(0,4)" ui-sref="slot({slot: info.slot.substr(0,4)})"></td>
+        </tr>
+    </table>
+    <br>
+    <h2 language-token="latest_transactions"></h2>
+    <table id="accountTransactions">
+        <tr class="tr_header">
+            <th language-token="hash"></th>
+            <th language-token="when"></th>
+            <th language-token="from_to"></th>
+            <th language-token="amount"></th>
+        </tr>
+
+        <tr ng-repeat="transaction in transactions | orderBy:'timestamp'" ui-sref="transaction({hash:transaction.hash})">
+            <td ng-bind="transaction.hash"></td>
+            <td ng-bind="transaction.when"></td>
+            <td ng-bind="transaction.who"></td>
+            <td ng-bind="transaction.amount"></td>
+        </tr>
+    </table>
+
+    <div ng-if="!reachedEnd">
+        <button class="btn btn-block" ng-click="ViewMore()" language-token="view_more"></button>
+    </div>
+</div>

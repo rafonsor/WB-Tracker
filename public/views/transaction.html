@@ -1,0 +1,88 @@
+<div ng-controller="transactionController">
+
+    <div id="leftDiv">
+        <table id="transactionInfo">
+            <tr>
+                <td language-token="hash"></td>
+                <td ng-bind="transaction.hash"></td>
+            </tr>
+
+            <tr>
+                <td language-token="timestamp"></td>
+                <td ng-bind="TimestampToDate(transaction.timestamp)"></td>
+            </tr>
+
+            <tr>
+                <td>Ledger #</td>
+                <td><a ui-sref="ledger({ledger:transaction.ledger})" ng-bind="transaction.ledger"></a></td>
+            </tr>
+
+            <tr>
+                <td language-token="sender"></td>
+                <td><a ui-sref="account({account:transaction.sender})" ng-bind="transaction.sender"></a></td>
+            </tr>
+
+            <tr>
+                <td language-token="receiver"></td>
+                <td><a ui-sref="account({account:transaction.receiver})" ng-bind="transaction.receiver"></a></td>
+            </tr>
+
+            <tr>
+                <td language-token="sent"></td>
+                <td ng-bind-template="-{{transaction.amount/1000}} UDC"></td>
+            </tr>
+
+            <tr>
+                <td language-token="received"></td>
+                <td ng-bind-template="+{{transaction.inbound.remain/1000}} UDC"></td>
+            </tr>
+
+            <tr>
+                <td language-token="signature"></td>
+                <td ng-bind="transaction.signature"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="rightDiv">
+        <table id="entitiesInfo">
+            <tr>
+                <td language-token="outbound_entity"></td>
+                <td><a ng-bind="transaction.outbound.entity" ui-sref="entity({entity:transaction.outbound.entity})"></a></td>
+            </tr>
+            <tr>
+                <td language-token="account"></td>
+                <td><a ui-sref="account({account:transaction.outbound.account})" ng-bind="transaction.outbound.account"></a></td>
+            </tr>
+            <tr>
+                <td language-token="fee"></td>
+                <td ng-bind-template="+{{transaction.outbound.fee/1000}} UDC"></td>
+            </tr>
+            <tr>
+                <td language-token="signature"></td>
+                <td ng-bind="transaction.outbound.signature"></td>
+            </tr>
+
+            <tr><td> </td><td> </td></tr>
+
+            <tr>
+                <td language-token="inbound_entity"></td>
+                <td><a ng-bind="transaction.inbound.entity" ui-sref="entity({entity:transaction.inbound.entity})"></a></td>
+            </tr>
+            <tr>
+                <td language-token="account"></td>
+                <td><a ui-sref="account({account:transaction.inbound.account})" ng-bind="transaction.inbound.account"></a></td>
+            </tr>
+            <tr>
+                <td language-token="fee"></td>
+                <td ng-bind-template="+{{transaction.inbound.fee/1000}} UDC"></td>
+            </tr>
+            <tr>
+                <td language-token="signature"></td>
+                <td ng-bind="transaction.inbound.signature"></td>
+            </tr>
+        </table>
+    </div>
+
+
+</div>

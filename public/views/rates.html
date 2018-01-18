@@ -1,0 +1,62 @@
+<div ng-controller="ratesController">
+
+    <h1 language-token="latest_rates"></h1>
+    <br>
+    <div id="ratesDiv" ng-if="rates && !noRatesError">
+        <table><tr><td>
+        <table class="table table-bordered">
+            <tr>
+                <th language-token="in"></th>
+                <th>UDC (<img class="udc" src="../assets/img/udc.png"/>)</th>
+            </tr>
+            <tr ng-repeat="(currency, rate) in rates">
+                <td ng-bind-template="1 {{ToText(currency)}}"></td>
+                <td class="rate" ng-bind="Math.round((1/rate)*10000)/10000"></td>
+            </tr>
+        </table></td>
+        <td style="width: 100px"></td>
+        <td><table class="table table-bordered">
+            <tr>
+                <th>1 UDC (<img class="udc" src="../assets/img/udc.png"/>)</th>
+                <th language-token="in"></th>
+            </tr>
+            <tr ng-repeat="(currency, rate) in rates">
+                <td class="rate" ng-bind="rate"></td>
+                <td ng-bind="ToText(currency)"></td>
+            </tr>
+        </table>
+        </td></tr></table>
+    </div>
+
+    <br>
+    <div id="converter" ng-if="rates && !noRatesError">
+        <h4 language-token="converter"></h4>
+        <table class="table">
+            <tr>
+                <td colspan="2">
+                    <span language-token="select_currency"></span>
+                    <select ng-model="currencySelected" ng-options="currency as currency for (currency, rate) in rates"></select>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <br>
+                    <input style="width: 150px" type="number" ng-model="amountSelected" min="0" step="0.01" value="1"/>
+                </td>
+                <td>
+                    <span ng-bind-template="{{amountSelected}} {{ToText(currencySelected)}} = {{InUdc(amountSelected, currencySelected)}} UDC"></span> (<img class="udc" src="../assets/img/udc.png"/>)
+                    <br>
+                    <span ng-bind-template="{{InCurrency(amountSelected, currencySelected)}} {{ToText(currencySelected)}} = {{amountSelected}} UDC"></span> (<img class="udc" src="../assets/img/udc.png"/>)
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+            </tr>
+        </table>
+    </div>
+
+    <div ng-if="noRatesError">
+        <span language-token="no_rates_error"></span>
+    </div>
+
+</div>

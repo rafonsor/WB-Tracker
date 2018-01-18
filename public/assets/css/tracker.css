@@ -1,0 +1,234 @@
+ul.dropdown-menu li {
+    cursor: pointer;
+}
+div#ledgers tr.tr-header th{
+    text-align: center;
+    vertical-align: middle;
+}
+
+div#misc {
+    float: left;
+    margin-top: 40px;
+    width: 750px;
+    text-align: center;
+    padding: 25px;
+    border-radius: 15px;
+    border: 2px solid grey;
+    min-height: 200px;
+}
+
+div#ledgers {
+    float: left;
+    text-align: center;
+    padding: 0 25px 20px 25px;
+    width: 750px;
+    border-radius: 15px;
+    border: 2px solid grey;
+}
+
+table#ledgersTable {
+    width: 700px;
+}
+
+div#transactions {
+    float: right;
+    padding: 0 10px 0 10px;
+    width: 730px;
+    min-height: 500px;
+    align-items: center;
+    margin-bottom: 70px;
+}
+
+table#transactionsTable {
+    text-align: center;
+}
+
+table#transactionsTable tr td h4{
+    text-align: center;
+    font-size: x-large;
+    text-decoration: underline;
+}
+img.udc {
+    height: 1.1em;
+    margin: 0 2px 3px 2px;
+}
+table#transactionsTable tr.tx-row td button {
+    min-width: 100px;
+    height: auto;
+    text-align: right;
+    align-content: flex-start;
+    font-size: smaller;
+    font-weight: bold;
+    color: white;
+    padding: 5px 5px 5px 5px;
+}
+table#transactionsTable tr.tx-row {
+    margin-bottom: 5px;
+    margin-top: 5px;
+}
+table#transactionsTable tr.tx-row td {
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+table#transactionsTable tr td div.hash {
+    background-color: #5bc0de;
+    border-color: #46b8da;
+    border-radius: 2px;
+    padding: 5px 5px 5px 0;
+    font-size: smaller;
+    color: white;
+    text-align: center;
+    width: 280px;
+}
+
+table#transactionsTable tr td.bold {
+    font-weight: bolder;
+    font-size: small;
+}
+table#transactionsTable tr td.center-left {
+    text-align: left;
+}
+table#transactionsTable tr td.pad-right {
+    padding-right: 15px;
+}
+
+table#transactionsTable tr.tr-footer td{
+    padding-bottom: 10px;
+    margin-bottom: 0;
+    border-bottom: 1px solid lightgray;
+}
+
+main{
+    margin: auto;
+    width: 80%;
+    padding: 10px 0 10px 0;
+}
+
+div#footer {
+    position: fixed;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #e7e7e7;
+    height: 60px;
+    bottom: 0;
+    text-align: center;
+    background-color: #f8f8f8;
+}
+
+div.spacing-block {
+    height: 60px;
+}
+table#slotsTable td.slot-entry {
+    padding: 4px;
+    text-align: justify;
+    font-size: small;
+    width: 275px;
+}
+
+table#slotsTable span.slot {
+    font-weight: bold;
+}
+table#slotsTable td.slot {
+    text-align: justify;
+}
+table#slotsTable td.slot:hover {
+    background-color: lightblue;
+}
+
+table#slotsTable a {
+    padding: 0 5px 0 5px;
+    margin-right: 5px;
+}
+table#slotsTable th {
+    font-size: large;
+    font-weight: bold;
+    vertical-align: middle;
+    text-align: center;
+}
+div#slotFilters {
+    text-align: center;
+}
+div#slotFilters span {
+    font-size: large;
+    font-weight: bold;
+    vertical-align: middle;
+}
+div#slotFilters button {
+    margin: 5px;
+}
+
+h1 {
+    border-bottom: 2px solid;
+    margin: 0 0 20px 0;
+}
+h3 {
+    border-bottom: 2px solid;
+    margin: 0 20px 20px 20px;
+    text-align: left;
+    text-indent: 30px;
+}
+
+div#misc form input {
+    width: 500px;
+}
+div#misc form button {
+    width: 80px;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+div.navbar-right {
+    margin: 10px;
+}
+
+div#ratesDiv {
+    width: 500px;
+    margin:0 auto;
+}
+div#ratesDiv table.table {
+    width: 200px;
+}
+div#ratesDiv table.table th {
+    text-align: center;
+    font-size: large;
+}
+div#ratesDiv table.table td {
+    padding-left: 15px;
+    font-weight: bold;
+    font-size: small;
+}
+div#ratesDiv table.table td.rate {
+    text-align: right;
+    padding-right: 15px;
+}
+
+div#converter {
+    width: 500px;
+    margin: 0 auto;
+}
+div#converter h4 {
+    border-bottom: 1px solid black;
+    padding: 0 0 5px 20px;
+    margin-bottom: 20px;
+    font-size: x-large;
+}
+
+div#converter table {
+    font-size: large;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+}
+
+td.node-connected {
+    color: green;
+    font-size: small;
+    font-weight: bold;
+}
+
+td.node-disconnected {
+    color: red;
+    font-size: small;
+    font-weight: bold;
+}

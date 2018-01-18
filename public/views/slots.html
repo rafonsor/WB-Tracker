@@ -1,0 +1,54 @@
+<div ng-controller="slotsController">
+    <h1 language-token="slots"></h1>
+
+    <div id="slotFilters">
+        <span language-token="filter_slots"></span>
+        <div class="btn-group">
+            <button class="btn btn-success" language-token="active" ng-click="GetSlots('active')"></button>
+            <button class="btn btn-warning" language-token="reserved" ng-click="GetSlots('reserved')"></button>
+            <button class="btn btn-danger" language-token="official" ng-click="GetSlots('official')"></button>
+        </div>
+    </div>
+    <br>
+    <table id="slotsTable" class="table table-hover">
+
+        <tr>
+            <th colspan="4" language-token="listing"></th>
+        </tr>
+
+        <tr ng-repeat="slot in slots | orderBy: order?'accounts':'slot'" ng-if="$index%4 == 0">
+            <td class="slot" ui-sref="slot({slot:slots[$index].slot})">
+                <span class="slot" ng-bind="slots[$index].slot"></span>:
+                <span ng-bind="slots[$index].accounts"></span>
+                <span language-token="active_accounts"></span>
+                <a class="btn btn-primary" ng-bind="slots[$index].entity" ui-sref="entity({entity:slots[$index].entity})"></a>
+            </td>
+            <td class="slot" ui-sref="slot({slot:slots[$index+1].slot})" ng-if="$index+1 < slots.length">
+                <span class="slot" ng-bind="slots[$index+1].slot"></span>:
+                <span ng-bind="slots[$index+1].accounts"></span>
+                <span language-token="active_accounts"></span>
+                <a class="btn btn-primary" ng-bind="slots[$index+1].entity" ui-sref="entity({entity:slots[$index+1].entity})"></a>
+            </td>
+            <td class="slot" ui-sref="slot({slot:slots[$index+2].slot})" ng-if="$index+2 < slots.length">
+                <span class="slot" ng-bind="slots[$index+2].slot"></span>:
+                <span ng-bind="slots[$index+2].accounts"></span>
+                <span language-token="active_accounts"></span>
+                <a class="btn btn-primary" ng-bind="slots[$index+2].entity" ui-sref="entity({entity:slots[$index+2].entity})"></a>
+            </td>
+            <td class="slot" ui-sref="slot({slot:slots[$index+3].slot})" ng-if="$index+3 < slots.length">
+                <span class="slot" ng-bind="slots[$index+3].slot"></span>:
+                <span ng-bind="slots[$index+3].accounts"></span>
+                <span language-token="active_accounts"></span>
+                <a class="btn btn-primary" ng-bind="slots[$index+3].entity" ui-sref="entity({entity:slots[$index+3].entity})"></a>
+            </td>
+        </tr>
+        <!--<tr ng-repeat="slot in slots | orderBy: order?'accounts':'slot'" >
+            <td ng-bind="slot.slot"></td>
+            <td ng-bind="slot.accounts"></td>
+            <td><a class="btn btn-primary" ng-bind="slot.entity" ui-sref="entity({entity:slot.entity})"></a></td>
+        </tr>-->
+    </table>
+    <div ng-if="!reachedEnd">
+        <button class="btn btn-block" ng-click="ViewMore()" language-token="view_more"></button>
+    </div>
+</div>

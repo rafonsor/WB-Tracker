@@ -1,0 +1,31 @@
+<div ng-controller="ledgerTransactionsController">
+
+    <h1 ng-bind-template="Ledger #{{ledgerId}}"></h1>
+    <br>
+
+    <table id="ledgerTransactionsTable">
+        <tr class="tr_header">
+            <th language-token="hash"></th>
+            <th language-token="timestamp"></th>
+            <th language-token="sender"></th>
+            <th language-token="receiver"></th>
+            <th language-token="sent"></th>
+            <th language-token="received"></th>
+        </tr>
+
+        <tr ng-repeat="transaction in transactions | orderBy:'timestamp'" ui-sref="transaction({hash: transaction.hash})">
+            <td ng-bind="transaction.hash"></td>
+            <td ng-bind="TimestampToDateSimple(transaction.timestamp)"></td>
+            <td ng-bind="transaction.sender"></td>
+            <td ng-bind="transaction.receiver"></td>
+            <td ng-bind-template="-{{transaction.amount/100}} UDC"></td>
+            <td ng-bind-template="+{{transaction.inbound.remain/100}} UDC"></td>
+        </tr>
+    </table>
+
+    <div ng-if="!reachedEnd">
+        <button class="btn btn-block" ng-click="ViewMore()" language-token="view_more"></button>
+    </div>
+
+
+</div>

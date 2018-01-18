@@ -1,0 +1,24 @@
+<div ng-controller="slotController">
+    <div id="slotInfo">
+        <span language-token="slot_number"></span><span ng-bind="slot.slot"></span><br>
+        <span language-token="managing_entity"></span><a class="btn btn-primary" ng-bind="slot.entity" ui-sref="entity({entity:slot.entity})"></a><br>
+        <span language-token="number_accounts"></span><span ng-bind="slot.accounts"></span><br>
+        <span language-token="status"></span><span ng-bind="slot.status"></span><br>
+    </div>
+
+    <h1 language-token="active_acounts"></h1>
+    <br>
+    <table id="slotAccountsTable">
+        <tr ng-repeat="acc in accounts | orderBy:acc"ng-if="$index % 4 == 0">
+            <td ng-bind="accounts[$index]" ui-sref="account({account:accounts[$index]})"></td>
+            <td ng-bind="accounts[$index+1]" ui-sref="account({account:accounts[$index+1]})"></td>
+            <td ng-bind="accounts[$index+2]" ui-sref="account({account:accounts[$index+2]})"></td>
+            <td ng-bind="accounts[$index+3]" ui-sref="account({account:accounts[$index+3]})"></td>
+        </tr>
+    </table>
+
+    <div ng-if="!reachedEnd">
+        <button class="btn btn-block" ng-click="ViewMore()" language-token="view_more"></button>
+    </div>
+
+</div>

@@ -1,0 +1,47 @@
+<div ng-controller="entityController">
+
+    <h1 ng-bind-template="Entity #{{entityId}}"></h1>
+
+    <table id="entityInfo">
+        <tr>
+            <td language-token="name"></td>
+            <td ng-bind="entity.name"></td>
+        </tr>
+        <tr>
+            <td language-token="website"></td>
+            <td ng-bind="entity.website"></td>
+        </tr>
+        <tr>
+            <td language-token="public_key"></td>
+            <td ng-bind="entity.public_key"></td>
+        </tr>
+        <tr>
+            <td language-token="host"></td>
+            <td ng-bind="entity.host"></td>
+        </tr>
+        <tr>
+            <td language-token="acoounts_host"></td>
+            <td ng-bind="entity.accounts"></td>
+        </tr>
+    </table>
+
+    <h2 language-token="managed_slots"></h2>
+    <div ng-if="!noSlots">
+        <div id="leftSlots">
+            <tr ng-repeat="slot in slots | orderBy:'slot'" ui-sref="slot({slot:slot.slot})" ng-if="$even">
+                <td ng-bind="slot.slot"></td>
+                <td><span ng-bind="slot.accounts"></span> <span language-token="active_accounts"></span></td>
+            </tr>
+        </div>
+        <div id="rightSlots">
+            <tr ng-repeat="slot in slots | orderBy:'slot'" ui-sref="slot({slot:slot.slot})" ng-if="$odd">
+                <td ng-bind="slot.slot"></td>
+                <td><span ng-bind="slot.accounts"></span> <span language-token="active_accounts"></span></td>
+            </tr>
+        </div>
+    </div>
+
+    <div ng-if="noSlots">
+        <span language-token="no_managed_slots"></span>
+    </div>
+</div>

@@ -1,0 +1,27 @@
+<div ng-controller="ledgerAccountsController">
+
+    <h1 ng-bind-template="Ledger #{{ledgerId}}"></h1>
+
+    <div id="leftAccounts">
+
+        <span ng-repeat-start="(acc, balance) in accounts | orderBy:'acc'" ng-if="$even" ui-sref="account({account: acc})">
+            <span ng-bind="acc"></span>
+            <span ng-bind="balance"></span>
+        </span>
+        <br ng-repeat-end>
+    </div>
+
+    <div id="rightAccounts">
+
+        <span ng-repeat-start="(acc, balance) in accounts | orderBy:'acc'" ng-if="$odd" ui-sref="account({account: acc})">
+            <span ng-bind="acc"></span>
+            <span ng-bind="balance"></span>
+        </span>
+        <br ng-repeat-end>
+    </div>
+
+    <div ng-if="!reachedEnd">
+        <button class="btn btn-block" ng-click="ViewMore()" language-token="view_more"></button>
+    </div>
+
+</div>
